@@ -1,0 +1,23 @@
+#ex 5.a Contar o nº de 1's numa word 
+
+.data
+teste: .word 0
+
+.text
+start:
+	la 	t0, teste
+	lw	a0, 0(t0)
+	jal	ra, contador_de_1
+	li	a7, 10
+	ecall
+contador_de_1:
+	li 	t1, 0
+loop:
+	beq a0,zero,fim
+	andi t2,a0,1
+	add t1,t1,t2
+	srli a0,a0,1
+	b loop
+fim:
+	mv a0, t1
+	ret

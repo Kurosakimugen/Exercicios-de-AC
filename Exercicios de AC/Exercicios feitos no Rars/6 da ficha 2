@@ -1,0 +1,35 @@
+#Ex 6 da ficha 2
+.data
+ vector: .float -15,0,2.75,5.87,5.65,35.32
+ elementos: .word 6
+ maximo: .float 10
+ minimo: .float 0
+
+.text
+	la a0, vector
+	la a1, elementos
+	lw a1 , 0(a1)
+	la t0, minimo
+	la t1, maximo
+	flw fa0, 0(t0) #minimo
+	flw fa1, 0(t1) #maximo
+	jal conta_intervalo
+	li a7, 10
+	ecall
+conta_intervalo:
+	mv t0 , a0
+	mv a0 , zero
+loop:
+	beqz a1 , fim
+	addi a1, a1, -1 #reduzir o numero de elementos
+	flw ft0 , 0(t0)
+	addi t0, t0, 4
+	fle.s t1 , fa0 , ft0 #compara com o minimo
+	beqz t1, loop #verifica que continua para o seguinte if
+	fge.s t1 , fa1, ft0 #compara com o maximo
+	beqz t1, loop #verifica que fica dentro do intervalo
+	addi a0,a0,1
+	b loop
+fim:
+	ret
+	

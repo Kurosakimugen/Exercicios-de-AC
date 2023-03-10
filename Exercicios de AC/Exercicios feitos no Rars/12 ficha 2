@@ -1,0 +1,29 @@
+#Ex 12 a, ficha 2
+.data
+	P: .half 1, 2 ,3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+	Q: .half 1, 2 ,3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+	R: .space 24
+	n: .word 12
+
+.text
+	la a0, P
+	la a1, Q
+	la a2, R
+	la a3, n
+	lw a3, 0(a3)
+	jal soma_v
+	li a7, 10
+	ecall
+soma_v:
+	blez a3, fim
+	addi a3, a3, -2
+	lw t0, 0(a0) #load 2 elements from P
+	lw t1, 0(a1) #load 2 elements from Q
+	ADD16 t0, t0 ,t1
+	sw t0, 0(a2) #store sum in R
+	addi a0, a0, 4
+	addi a1, a1, 4
+	addi a2, a2, 4
+	b soma_v
+fim:
+	ret
