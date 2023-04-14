@@ -1,0 +1,70 @@
+.data 
+mascara:  .word   0x00000005
+vetor:    .float  1,-3,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-20,200 
+flag:	  .word   0
+# Resultado esperado para este caso: fa0=1+(-5)=-4
+
+.text
+.global maskadd
+
+# Entrada:
+# a0: mascara (mask)
+# a1: endereço de vetor (vector address)
+# a2: flag: 0 => não usar funcao (don't use function)
+# Saida:
+# fa0: soma (sum)
+
+start:
+    # inicializa argumentos para a sub-rotina
+    lw a0 ,mascara
+    la a1 ,vetor
+    lw a2 ,flag
+    
+    jal	     ra, maskadd
+    li	     a7, 2	# print result
+    ecall
+    li	     a7, 10	# stop here
+    ecall
+
+maskadd:
+    # guarda valores na pilha (store relevant registers in stack)
+    addi sp,sp,-32
+    sw ra,28(sp)
+    sw s0,24(sp)
+    sw s1,20(sp)
+    sw s2,16(sp)
+    fsw fs0,12(sp)
+    # inicializa registos que serão usados (s0<-a0, s1<-a1, s2<-a2, fs0 <-0)
+    mv s0 , a0  #mascara
+    mv s1, a1  #vetor
+    mv s2, a2  #flag
+    fmv.s.x fs0 , zero #resultado
+# código principal da sub-rotina (subroutine code):
+.L1:
+    beqz s0, .L2 #verificar que a mascara ainda tem bits em 1
+    flw fa0, 0(s1) #carregar o elemento do vetor
+    addi s1,s1,4 #atualizar o apontador do vetor
+    andi t0, s0, 1 #verifica o bit da direita da mascara (lsb)
+    srli s0,s0,1 #atualiza o valor da mascara
+    beqz t0, .L1 #caso seja 0
+    beqz s2 , .L3 #verifica a flag 
+    call subrotina #chama a funçao se a flag for 1
+.L3:
+    fadd.s fs0, fs0, fa0 #atualiza o valor da soma parcial
+    j .L1 #repete o ciclo
+
+# prepara retorno (prepare to return)
+.L2:    
+    fmv.s fa0, fs0
+    flw fs0,12(sp)
+    lw s2, 16(sp)
+    lw s1 , 20(sp)
+    lw s0 , 24(sp)
+    lw ra , 28(sp)
+    addi sp,sp,32
+    ret
+        
+## dummy subroutine (just for testing when flag=1)        
+subrotina:
+    # simula G(x) / simulates G(x) 
+    ret

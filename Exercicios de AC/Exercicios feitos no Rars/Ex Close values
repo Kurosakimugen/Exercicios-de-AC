@@ -1,0 +1,42 @@
+.data
+size: .word 6
+dist: .word 5
+va:   .word  4, 13,  8,  5, 4, 44
+vb:   .word  21, 8, 12, 41, 4,  5
+# Resultado esperado para este caso: 3
+
+.text
+.global nperto
+
+start:
+	la	a0,va
+	la	a1,vb
+	lw	a2,size
+	lw	a3,dist
+	jal	ra,nperto
+	li	a7,1 		# print result (a0)
+	ecall
+	li	a7,10		# stop here
+	ecall
+
+nperto:
+	li	t0,0		# contador das vezes que a condicao acontece
+	
+ciclo:
+	beq	a2,zero,fim	# termina se nao ha mais elementos
+	lw	t1,0(a0)	# carrega elemento de va
+	lw	t2,0(a1)	# carrega elemento de vb
+	sub	t3,t1,t2	# calcula distancia entre elementos
+	bgtz 	t3, pos		# complementa se for negativa
+	neg  	t3, t3
+pos:
+	bgt	t3,a3,maior	# passa ao seguinte se for > dist
+	addi	t0,t0,1		# incrementa contador se for <
+maior:
+	addi	a0,a0,4		# atualiza apontadores
+	addi	a1,a1,4
+	addi	a2,a2,-1	# decrementa numero de elementos a analisar
+	j	ciclo
+fim:
+	mv	a0,t0
+	ret

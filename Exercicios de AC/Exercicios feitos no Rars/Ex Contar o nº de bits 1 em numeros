@@ -1,0 +1,40 @@
+# Contar o número de bits a 1 na representação binária de um valor do tipo word
+
+.data
+num: .word 38   
+# Resultado esperado neste caso: 3
+
+#num: .word 32  # Res=1
+#num: .word 0   # Res=0
+#num: .word 1   # Res=1
+#num: .word 0x80000000  
+
+.text
+.global nbits1
+
+start:
+      	la   	t0, num
+      	lw   	a0, 0(t0)
+	jal  	ra, nbits1   
+      	li   	a7, 1		# print result (a0)    
+      	ecall
+     	li   	a7, 10     	# stop here
+      	ecall           
+
+# 1) inicializa o contador de bits a 1 (com zero)
+# 2) ainda há bits para analisar? (se não, vai para o fim)
+# 3) isola o bit menos significativo (através de uma máscara)
+# 4) soma o resultado ao contador (só será 1 se o lsb for 1)
+# 5) desloca a palavra uma posição para a direita
+# 6) vai para o passo 2
+
+nbits1:
+      	mv   	t0, zero         
+ciclo:
+	beq  	a0, zero, fim	# (já) não há bits a 1 na palavra a analisar?
+      	andi 	t1, a0, 1	# isola o lsb
+      	add  	t0, t0, t1	# se for 1 incr o no. de 1s da palavra
+      	srli 	a0, a0, 1	# desloca uma posição para a direita
+      	j    	ciclo		# repete até não haver mais bits a 1
+fim:  	mv   	a0, t0
+      	ret
