@@ -1,0 +1,37 @@
+Ficha 6
+13)
+rato: 50 * 800 = 40000 -> 40000 / 2 * 10^9 = 0,002%
+disquete: 50 000 / 2 = 25000 -> 25000 * 800 = 20 * 10^6 -> 20 * 10^6 / 2 * 10^9 = 1%
+disco: 4*4 = 16 -> 8 * 10^6 / 16 = 500 * 10^3 * 800 = 400 * 10^6 / 2 * 10^9
+
+5)
+a)
+tempo A: (21+200+241) * 10^-6 + 250 / 1.125 * 10^6 = 684 us (Tempo de viagem + dados/taxa)
+tempo B: (56+207+360) * 10^-6 + 250 / 10 * 10^6 = 648 us
+b)
+tempo A = tempo B <=> x/1.125*10^6 + 462*10^-6 = x/10*10^6 + 623 * 10^-6 = 208
+
+7)
+tempo total de envio = tempo de procura + tempo de transmissao = 10 + 40*10^6/(5*10^3/8) = 10 +64 = 74
+energia/1 file = 10 * 35 + 64 * (35 + 5) = 2910 J
+100 * 10^3 / 2910 = 34
+
+8)
+Tempo average de acesso =  tempo de procura + tempo de rotaçao + tempo de tranferencia + tempo de controlador
+tempo de rotaçao = 1/2 * 1/RPM/60
+tempo de transferencia = dados / taxa de transferencia
+
+9)
+capacidade do cilindro = 416 * 0.5kb = 208kb
+tempo average de 400k = tempo average + t procura min
+
+11)
+a)
+40*10^9/4*10^3 * 4*10^3/10*10^6 = 4ms
+b)
+(30+10)*10^-3 + 40*10^9/20*10^3 = 52 ms
+c)
+x/20*10^6 + (30+10) * 10^-3 = x/ 10 * 10^6
+
+12)
+90 / 2.5 + 10 = 7.2
