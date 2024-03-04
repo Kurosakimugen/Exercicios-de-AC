@@ -1,0 +1,32 @@
+#a0 endereço base v
+#a1 nº de elementos
+#a2 limite
+conta-inf:
+andi a2,a2,0x00FF
+slli t0,a2,8
+or t0,a2,t0
+slli t1,t0,16
+or t0,t0,t1
+srli a1,a1,2 #-4
+ciclo:
+lw t1,0(a0)
+scmplt8 t2,t1,t0
+add8 t3,t3,t2
+addi a0,a0,4
+addi a1,a1,-1
+bne a1,zero,ciclo
+mv a0,t3,0x00FF
+srli t3,t3,8
+andi t5,t3,-0x00FF
+srli t6,t3,16
+andi t6,t6,0x00FF
+srli t3,t3,24
+neg t4,t4
+neg t5,t5
+neg t6,t6
+neg t7,t7
+add a0,t4,t5
+add a0,a0,t6
+add a0,a0,t7
+neg a0,a0
+ret

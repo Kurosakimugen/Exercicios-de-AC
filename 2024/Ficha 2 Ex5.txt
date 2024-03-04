@@ -1,0 +1,22 @@
+.data
+X: .float 12.3, 14.1, 0.21, -4.31
+Y: .float 1.0, -1.0, 1.0, -1.0
+
+.text
+la a0,X #Endereço base de x
+la a1,Y #Endereço base de y
+li a2,4 #valor de n
+call prodint_VF #resultado em fa0
+fcvt.d.w fa0,zero # fa0 <- 0.0
+loop:
+flw ft0,0(a0)
+fcvt.d.s ft0,ft0 #conversao de precisao simples para dupla
+flw ft1,0(a1)
+fcvt.d.s ft1,ft1
+fmul.d ft3,ft0,ft1
+fadd.d fa0,fa0,ft3
+addi a0,a0,4
+addi a1,a1,4
+addi a2,a2,-1
+bne a2,zero,loop
+ret

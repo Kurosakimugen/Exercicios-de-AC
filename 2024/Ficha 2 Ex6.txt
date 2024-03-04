@@ -1,0 +1,19 @@
+#a0: endereço base V
+#a1: nª de elementos
+#fa0: limite inferior (a)
+#fa1: limite superior (b)
+Conta_Intervalo:
+ciclo:
+mv t0,zero #contador t0
+beq a1,zero,fim
+flw ft0,0(a0)
+flt.s ft0,fa0,seguinte # x < a
+fgt.s ft0,fa1,seguinte # x > b
+addi t0,t0,1
+seguinte:
+addi a0,a0,4
+addi a1,a1,-1
+j ciclo
+fim:
+mv a0,t0
+ret
