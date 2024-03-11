@@ -1,0 +1,69 @@
+5.
+a)
+27 de etiqueta, 2 de indice, 3 de offset
+b)0x52000044
+2 9 0 0 0 0 2 i = 0 bloco 0
+0x2a 5d 04 aa
+
+9.
+a)
+2^8 * 2^10 = 256 KiB
+0x00000
+0x3FFFF
+b)
+offset = 2
+indice = 4
+tag = 12
+c)
+0x2df10
+10 1101 1111 00|01 00|00
+validade: ok (bloco 4)
+tag: b7c tag = igual
+read hit
+----------------------
+0x23454
+10 0011 0100 01|01 01|00
+validade: Não valido (bloco 5)
+Read Miss
+conteudo passam a ser o da memoria principal no lugar 0x23454
+tag: 8d1
+----------------------
+0x3f7b0
+11 1111 0111 10|11 00|00
+validade: ok (bloco 12)
+tag: FDE != FDF
+read miss
+Conteudo é buscado da memória principal que está no lugar 0x3f7b0
+tag passa a ser: fde
+----------------------
+0x048c4
+00 0100 1000 11|00 01|00
+validade: ok (bloco 1)
+tag: 123 == 123
+write hit
+conteudo da cache e da memoria principal passa a ser 1212abab
+----------------------
+0x3f7d0
+11 1111 0111 11|01 00|00
+validade: ok (bloco 4)
+tag: FDF
+write miss
+conteudo é escrito na memoria principal e nada é feito na cache (00001111)
+---------------------
+0x1dde8
+01 1101 1101 11|10 10|00
+validade: not ok (bloco 10)
+conteudo na memoria é unico a ser atualizado
+10)
+a)verificar que o conteudo da cache e memoria correspondem
+b)
+read hit
+write hit
+write miss
+read miss
+read miss
+write miss
+write
+write
+
+
