@@ -1,0 +1,55 @@
+11)
+a)
+f1 = 1/0,62 ns = 1/0,62 * 10^-9 s = 1/0,62 * 10^9 = 1,61GHz
+f2 = 1/0,66 ns = 1,52 GHz
+b)
+P1: tmed = 0,62 ns + 0,114 * 70 ns = 8,6 ns
+P2: tmed = 0,62 ns + 0,008 * 70 ns = 6,26 ns
+c)
+texec1 = N * CPIefetivo/ f1
+texec2 = N * CPIefetivo/ f2
+cpiefetivo = cpiideal + cmem
+cmem1 = 0,114 * (70 ns/0,62ns) * (1 + 0,36) = 17,5
+cmem2 = 0,008 * (70 ns/0,66ns) * 1,36 = 11,54
+texec1/texec2 = cpi1*f2 /cpi2 * f1 = 1,39
+12)
+a) 
+40 + 50 = 90
+b)
+tf = 90 / 1400 = 6,43%
+c)
+cpi = 1,2 + cmem = 1,2 + 7,2 = 8,4
+cmem = 1,4 * 0,0643 * 80 / 1 = 7,2
+cmem2 = 1,4 * 80 / 1 = 113,2
+13)
+a)
+2^12 * 16 = 2^12 * 2^4 = 2^10 (ki) * 2^6 = 64 Kib
+b)
+2^12 * 17 = 2^12 * 17 / 2^10 = 4 * 17 = 68 Kib
+c)
+2^12 * 18 = 4 * 18 kib = 72kib
+d)
+2^12 * 28 = 112 Kib
+14)
+a)
+8 * (8 bytes + 2 bit + 2 bit + 2 * tag)
+64kib = 2^6 * 2^10 bytes =2^16 bytes
+11 tag, 3 indice , bloco 2
+64 + 2 + 2 + 2 * 11 = 90 bytes
+b)
+2 comparações de 11 bits
+c)
+0x8567
+1000 0101 011|0 01|11
+v = 0 para ambos blocos logo nada pode ser dito
+indice 1
+0xF798
+1111 0111 100|1 10|00
+indice 6
+tag 7bc
+offset 0
+resultado: FF
+0x663E
+0110 0110 0011 
+f)
+tendo dirty bit significa ser uma write-back
