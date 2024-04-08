@@ -1,0 +1,20 @@
+12)
+	 IF--ID--EX--MEM--WB
+Latência 300--400--350--500--100
+
+a) Periodo minimo do relógio
+Sem pipe: 1650 ps
+Com pipe: 500 ps
+b) Tempo que demora a fazer lw
+Sem pipe: 1650 ps
+Com pipe: 5 * 500 = 2500 ps
+c) MEM, passando a ter 400 de periodo mimnimo
+15)
+a)
+lw t1,40(t6)     -- IF--ID--EX--MEM--WB
+add t5,t5,t3     --   --IF--ID--EX--MEM--WB
+add t6,t6,t3     --       --IF--ID--EX--MEM--WB
+sw t1,20(t5)     --           --IF--ID--EX--MEM--WB (Fazer MEM-EX do add t5)
+beq t1,zero,loop --               --IF--ID--EX--MEM--WB
+b)PC + Instrução
+c)20%
