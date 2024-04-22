@@ -1,0 +1,15 @@
+13)
+lw t1 , 40(t6)
+add t6, t2, t2
+sw  t6 , 50(t1)
+a)sw t6 e sw t1
+b)seria necessário colocar 2 nop's para que o ID do sw batesse com o WB do add entre o add e sw
+c)Com atalhos não seria necessário adicionar nop's
+d)
+c/atalhos => 7 ciclos => 7*400 = 2800 ps
+s/atalhos => 9 ciclos => 9*300 = 2700 ps
+e)...
+f)...
+17)
+a)o previsao do beq
+Não estou a prestar atençao

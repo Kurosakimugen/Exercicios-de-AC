@@ -1,0 +1,26 @@
+ALU é dividida em diferentes componentes de forma a otimizar o trabalho e permitir o calculo de diferentes coisas.
+Normalmente sendo: Div, Mul, ALU(Add), VF.Add,VF.Mul/Div
+
+ID tem a capacidade de fazer Emissão (Despacho), para além de verificar se existe conflitos com o resto da pipeline, sendo estes por exemplo conflitos estruturais. Para isso que existe, estações de reserva também ditas como queue's para fazer certa operações das quais o bloco em ativo já está ocupado.
+De forma a atualizar resultados, todos os blocos do conjunto da ALU são enviadas para um barramento o qual está ligado às queue's e verifica se alguém precisa daquela informação, a isto dá-se o nome de CDB (Common Data Bus).
+As queues de load e store por norma são maiores que a do resto.
+
+Ficha 5
+1
+a)
+i. x3 (dependencia "verdadeira" (de dados))
+ii. Sem depências
+iii. Pode haver problemas caso o espaço de memoria for o mesmo.
+iv. Dependencia de controle
+
+2)
+a)
+anti-dependencia (x2 do lw com o do xor)
+verdadeira (x7 do add com o bne)
+verdadeira (x8 do sub com o add)
+controle (bne com o add e xor)
+b)lw com o add causaria problemas
+
+4)
+o primeiro load entra na queue, quando vem a segunda o load inicial vai para  memory e este entra para queue.
+(Não acabei de escrever)
