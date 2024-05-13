@@ -1,0 +1,35 @@
+Ficha 5
+Ex 3
+a)
+dependencia de dados: f1,f5,f4,f6
+anti-dependencia:f5,f4,f6
+dependencia de saida:f4
+b)
+ciclo 1
+div 1 -> inst 1
+ciclo 2
+div 2 -> inst 2 (Unidade Funcional)
+div -> inst 1 (até ciclo 6)
+ciclo 3
+add 1 -> inst 3 (pendente da inst 1)
+ciclo 4
+add 2 -> inst 4
+ciclo 5
+add -> inst 4 (até ciclo 6)
+add 3 -> inst 5 (pendente da inst 1)
+ciclo 6
+mul 1 -> inst 6 (pendente inst 3)
+ciclo 7
+cdb -> inst 1
+div -> inst 2 (até ciclo 11)
+ciclo 8
+cdb -> inst 4
+add -> isnt 3 (até ciclo 9)
+add 2 -> inst 7 (depende inst 2)
+ciclo 9
+ciclo 10
+cdb -> inst 3
+ciclo 11
+mul -> inst 6 (até ciclo 13)
+(Não vou escrever o resto...)
+
