@@ -1,0 +1,60 @@
+Ficha 6 13.05
+5.
+
+a)
+fixo -> Custo apenas do overhead entre os sistems que não é dependente da quantidade de informação
+
+fixo A = 21 + 200 + 241 = 462 us
+fixo B = 56 + 207 + 360 = 623 us
+
+t250A = 462 + 250Byte/1,125Mbytes/s = 462 + ~222= 684 us 
+t250B = 623 + 250Byte/10Mbytes/s = 623 + 25 = 648 us
+
+b)
+A rede A é mais rapida para transferência de poucos dados.
+462 + D/1,125Mb/s = 623 + D/10Mb/s
+D > 204 Bytes -> B é mais rápido
+
+8.
+t = tcontrol + tseek + trot + ttrans
+tcontrol = tempo que demora o braço a funcionar corretamente
+tseek = tempo que demora a colocar no local correto, por norma dado em tempo médio
+trot = tempo que demora a rodar o disco até atingir o controlador -> assumir que é 1/2 * tempo de rotação inteiro
+ttrans = tempo que demora a ler os dados
+
+a)
+t rot = 1/2 * 60/10000 = 3ms
+tcontrole + tseek + trot = 0,2 + 6 + 3 = 9,2ms
+t = 9,2 + ttrans = 9,2 + 512B/50Mb/s
+= 9,2 + 512~=500/ 50 * 10^6
+= 9,2 + 10 * 10^-6s
+= 9,2 + 10 us
+= 9,21ms
+
+b)
+tseek = 6 -> 1,5ms
+t = 9,21 - 4,5 = 4,71 ms
+
+9.
+
+a)
+200 Kib -> 400 setores (512 bytes) onde setore são seguidos numa só pista
+400 Kib -> 800 setores onde uma pista inteira mais 384 setores seguidos na pista adjacente e com posição incial ideal (2ª pista)
+
+tcontrol =  0
+trot = 10000RPM -> 3ms
+
+t200k = 8ms + 3ms + 400 * 512B/80Mb/s
+= 11ms + 200Kib/80Mb/s
+= 11ms + 2,56 * 10^-3s 
+= 13,56 ms
+
+t400k = 8ms + 3ms + 416 * 512B/80Mb/s + 2ms + 384 * 512B/80Mb/s
+= 13ms + 800 * 512B/80Mb/s
+= 13ms + 5,12
+= 18,12ms
+
+b)
+t200k = 400 * (8ms + 3ms + 512B/80Mb/s)
+= 400 * (11ms + 0,0064)
+= 4,4s
